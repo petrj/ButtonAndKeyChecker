@@ -1,4 +1,4 @@
-# ButtonAndKeyChecker
+# Button And Key Checker
 Simple Android app for checking HW buttons and keys
 
 Application shows which key has been pressed.
