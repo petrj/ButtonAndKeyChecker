@@ -15,6 +15,7 @@ namespace ButtonAndKeyChecker
     public class MainActivity : AppCompatActivity
     {
         private DateTime _lastKeyPressed = DateTime.MinValue;
+        private DateTime _lastMotionEventTime = DateTime.MinValue;
 
         protected override void OnCreate(Bundle savedInstanceState)
         {
@@ -28,35 +29,82 @@ namespace ButtonAndKeyChecker
 
                 do
                 {
-                    Thread.Sleep(1000);
-
                     if (_lastKeyPressed == DateTime.MinValue ||
-                    ((DateTime.Now - _lastKeyPressed).TotalSeconds > 5))
+                    ((DateTime.Now - _lastKeyPressed).TotalSeconds > 3))
                     {
                         RunOnUiThread(() =>
                         {
-                            SetText("Press a key or button", 20);
+                            SetKeyText("", 20);
                         });
                     }
+
+                    if (_lastMotionEventTime == DateTime.MinValue ||
+                                        ((DateTime.Now - _lastMotionEventTime).TotalSeconds > 2))
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            SetMotionEventText("");
+                        });
+                    }
+
+                    Thread.Sleep(250);
 
                 } while (true);
             }).Start();
         }
 
-        public void SetText(string text, float size=40)
+        public void SetKeyText(string text, float size=40)
         {
-            var ketTexttView = FindViewById<TextView>(Resource.Id.keyTextView);
-            ketTexttView.Text = text;
-            ketTexttView.SetTextSize(Android.Util.ComplexUnitType.Dip, size);
+            var keyTextView = FindViewById<TextView>(Resource.Id.keyTextView);
+
+            if (keyTextView != null)
+            {
+                keyTextView.Text = text;
+                keyTextView.SetTextSize(Android.Util.ComplexUnitType.Dip, size);
+            }
+        }
+
+        public void SetMotionEventText(string text, float size = 40)
+        {
+            var motionEventTextView = FindViewById<TextView>(Resource.Id.motionEventTextView);
+            if (motionEventTextView != null)
+            {
+                motionEventTextView.Text = text;
+                motionEventTextView.SetTextSize(Android.Util.ComplexUnitType.Dip, size);
+            }
         }
 
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
-            SetText(keyCode.ToString());
+            SetKeyText(keyCode.ToString());
             _lastKeyPressed = DateTime.Now;
 
             //return base.OnKeyDown(keyCode, e);
             return true;
+        }
+
+        public override bool OnGenericMotionEvent(MotionEvent e)
+        {
+            SetMotionEventText($"{e.Action.ToString()}");
+            _lastMotionEventTime = DateTime.Now;
+
+            return base.OnGenericMotionEvent(e);
+        }
+
+        public override bool OnTouchEvent(MotionEvent e)
+        {
+            SetMotionEventText($"{e.Action.ToString()}");
+            _lastMotionEventTime = DateTime.Now;
+
+            return base.OnTouchEvent(e);
+        }
+
+        public override bool OnTrackballEvent(MotionEvent e)
+        {
+            SetMotionEventText($"{e.Action.ToString()}");
+            _lastMotionEventTime = DateTime.Now;
+
+            return base.OnTrackballEvent(e);
         }
     }
 }
