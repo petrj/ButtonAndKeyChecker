@@ -3,6 +3,10 @@ using Android.Views;
 namespace ButtonAndKeyChecker
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
+    [IntentFilter(
+        new[] { Android.Content.Intent.ActionMain },
+        Categories = new[] { Android.Content.Intent.CategoryLeanbackLauncher }
+    )]
     public class MainActivity : Activity
     {
         private DateTime _lastKeyPressed = DateTime.MinValue;
