@@ -1,9 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.29306.81
+# Visual Studio Version 17
+VisualStudioVersion = 17.14.36221.1 d17.14
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonAndKeyChecker", "ButtonAndKeyChecker.csproj", "{109C2250-3F69-4373-ACA8-4C1650161CE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ButtonAndKeyChecker", "ButtonAndKeyChecker.csproj", "{70571BAD-069F-43BE-B13A-3F72239E857F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -11,17 +11,17 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{109C2250-3F69-4373-ACA8-4C1650161CE4}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{70571BAD-069F-43BE-B13A-3F72239E857F}.Release|Any CPU.Deploy.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {668EBD04-AD2A-482E-97F0-66B0EFBE21BB}
+		SolutionGuid = {294E4046-E4CB-4BD7-AC3E-9A7FCA4FBC84}
 	EndGlobalSection
 EndGlobal

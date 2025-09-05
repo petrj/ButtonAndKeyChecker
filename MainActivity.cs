@@ -1,26 +1,18 @@
-﻿using System;
-using System.Threading;
-using System.Threading.Tasks;
-using Android.App;
-using Android.OS;
-using Android.Runtime;
-using Android.Support.Design.Widget;
-using Android.Support.V7.App;
 using Android.Views;
-using Android.Widget;
 
 namespace ButtonAndKeyChecker
 {
-    [Activity(Label = "@string/app_name", Theme = "@style/AppTheme.NoActionBar", MainLauncher = true)]
-    public class MainActivity : AppCompatActivity
+    [Activity(Label = "@string/app_name", MainLauncher = true)]
+    public class MainActivity : Activity
     {
         private DateTime _lastKeyPressed = DateTime.MinValue;
         private DateTime _lastMotionEventTime = DateTime.MinValue;
 
-        protected override void OnCreate(Bundle savedInstanceState)
+        protected override void OnCreate(Bundle? savedInstanceState)
         {
             base.OnCreate(savedInstanceState);
-            Xamarin.Essentials.Platform.Init(this, savedInstanceState);
+
+            // Set our view from the "main" layout resource
             SetContentView(Resource.Layout.activity_main);
 
             new Thread(() =>
@@ -51,9 +43,10 @@ namespace ButtonAndKeyChecker
 
                 } while (true);
             }).Start();
+
         }
 
-        public void SetKeyText(string text, float size=40)
+        public void SetKeyText(string text, float size = 40)
         {
             var keyTextView = FindViewById<TextView>(Resource.Id.keyTextView);
 
@@ -106,6 +99,7 @@ namespace ButtonAndKeyChecker
 
             return base.OnTrackballEvent(e);
         }
+
+
     }
 }
-
