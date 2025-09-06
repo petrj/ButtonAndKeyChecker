@@ -3,10 +3,10 @@ using Android.Views;
 namespace ButtonAndKeyChecker
 {
     [Activity(Label = "@string/app_name", MainLauncher = true)]
-    [IntentFilter(
-        new[] { Android.Content.Intent.ActionMain },
-        Categories = new[] { Android.Content.Intent.CategoryLeanbackLauncher }
-    )]
+    //[IntentFilter(
+    //    new[] { Android.Content.Intent.ActionMain },
+    //    Categories = new[] { Android.Content.Intent.CategoryLeanbackLauncher }
+    //)]
     public class MainActivity : Activity
     {
         private DateTime _lastKeyPressed = DateTime.MinValue;
@@ -35,11 +35,23 @@ namespace ButtonAndKeyChecker
                     }
 
                     if (_lastMotionEventTime == DateTime.MinValue ||
-                                        ((DateTime.Now - _lastMotionEventTime).TotalSeconds > 2))
+                    ((DateTime.Now - _lastMotionEventTime).TotalSeconds > 2))
                     {
                         RunOnUiThread(() =>
                         {
                             SetMotionEventText("");
+                        });
+                    }
+
+                    if (
+                        ((DateTime.Now - _lastKeyPressed).TotalSeconds > 3)
+                        &&
+                         ((DateTime.Now - _lastMotionEventTime).TotalSeconds > 2)
+                      )
+                    {
+                        RunOnUiThread(() =>
+                        {
+                            SetTitleVisibility(ViewStates.Visible);
                         });
                     }
 
@@ -53,11 +65,19 @@ namespace ButtonAndKeyChecker
         public void SetKeyText(string text, float size = 40)
         {
             var keyTextView = FindViewById<TextView>(Resource.Id.keyTextView);
-
             if (keyTextView != null)
             {
                 keyTextView.Text = text;
                 keyTextView.SetTextSize(Android.Util.ComplexUnitType.Dip, size);
+            }
+        }
+
+        private void SetTitleVisibility(ViewStates visibility)
+        {
+            var titleTextView = FindViewById<TextView>(Resource.Id.titleTextView);
+            if (titleTextView != null)
+            {
+                titleTextView.Visibility = visibility;
             }
         }
 
@@ -74,15 +94,16 @@ namespace ButtonAndKeyChecker
         public override bool OnKeyDown(Keycode keyCode, KeyEvent e)
         {
             SetKeyText(keyCode.ToString());
+            SetTitleVisibility(ViewStates.Invisible);
             _lastKeyPressed = DateTime.Now;
 
-            //return base.OnKeyDown(keyCode, e);
             return true;
         }
 
         public override bool OnGenericMotionEvent(MotionEvent e)
         {
             SetMotionEventText($"{e.Action.ToString()}");
+            SetTitleVisibility(ViewStates.Invisible);
             _lastMotionEventTime = DateTime.Now;
 
             return base.OnGenericMotionEvent(e);
@@ -91,6 +112,7 @@ namespace ButtonAndKeyChecker
         public override bool OnTouchEvent(MotionEvent e)
         {
             SetMotionEventText($"{e.Action.ToString()}");
+            SetTitleVisibility(ViewStates.Invisible);
             _lastMotionEventTime = DateTime.Now;
 
             return base.OnTouchEvent(e);
@@ -99,6 +121,7 @@ namespace ButtonAndKeyChecker
         public override bool OnTrackballEvent(MotionEvent e)
         {
             SetMotionEventText($"{e.Action.ToString()}");
+            SetTitleVisibility(ViewStates.Invisible);
             _lastMotionEventTime = DateTime.Now;
 
             return base.OnTrackballEvent(e);

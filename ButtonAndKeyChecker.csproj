@@ -6,14 +6,15 @@
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
 
-    <ApplicationVersion>6</ApplicationVersion>
-    <ApplicationDisplayVersion>6.0</ApplicationDisplayVersion>
+    <ApplicationVersion>7</ApplicationVersion>
+    <ApplicationDisplayVersion>7.0</ApplicationDisplayVersion>
 
 	<RuntimeIdentifiers>android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
 
 	<ApplicationId>net.petrjanousek.buttonandkeychecker</ApplicationId>
 	<ApplicationTitle>Button And Key Checker</ApplicationTitle>
 	<AndroidEnable16KBPageSupport>true</AndroidEnable16KBPageSupport>
+	<AndroidPackageFormat>aab</AndroidPackageFormat>
 
     <TrimMode>full</TrimMode>
   </PropertyGroup>
